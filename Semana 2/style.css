@@ -1,0 +1,39 @@
+/* 
+    1. etiquetas
+    2. id identificador
+    3. clases
+*/
+
+/* Etiquetas */
+
+
+
+p {
+    font-size: 20px;
+    color:blueviolet;
+    font-weight:900;
+    /* font-style:italic; */
+}
+
+h1 {
+    /* Propiedades */
+    color :brown;
+    /* font-size: 50px; */
+  }
+/* Id */
+
+#titulo1{
+     /* Propiedades */
+     color :seagreen;
+     /* font-size: 50px; */
+}
+
+#titutloQuenoExiste{
+    /* No pasa nada */
+}
+
+/* Clases */
+
+.textoRojo{
+    color: red;
+}
