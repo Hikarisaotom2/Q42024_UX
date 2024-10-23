@@ -9,6 +9,7 @@
     <head>
         <title>Mi primer formulario con diseño</title>
         <link rel="stylesheet" href="style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <style>
                 #titulo1{
                     color:aqua;
@@ -23,17 +24,68 @@
         <h1 id="titulo1"> ingrese la informaciòn</h1>
         <p> <b style="color: coral;font-weight: 700;">instrucciones de uso: </b> por favor ingrese sus datos y de click en el boton de enviar</p>
         <form >
-            <input type="text" placeholder="nombre">
-            <input type="password" placeholder="PASSWORD">
-            <input type="email" placeholder="correo electronico">
-            <input type="number" placeholder="edad">
-            <input type="date" placeholder="fecha de nacimiento">
-            <input type="submit" value="enviar">
+            <input type="text" placeholder="nombre" value="Hola" class="form-control form-control-lg">
+            <input type="password" placeholder="PASSWORD" class="form-control">
+            <input type="email" placeholder="correo electronico" class="form-control">
+            <input type="number" placeholder="edad" class="form-control">
+            <input type="date" placeholder="fecha de nacimiento" class="form-control">
+            <input type="submit" value="enviar" class= "btn btn-danger">
         </form> 
         <img src="https://e7.pngegg.com/pngimages/195/190/png-clipart-black-cat-black-cat-halloween-horror-elements.png" alt="Gatito" width="150" height="150" />
         <button>enviar</button>
        </center> 
        <h1 class="textoRojo"> FIN DEL FORMULARIO</h1>
+
+       <select class="form-select" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+      <button type="accordion-button" class="btn btn-outline-primary">"accordion-button</button>
+      <button type="button" class="btn btn-warning">btn</button>
+      
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Accordion Item #1
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Accordion Item #2
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Accordion Item #3
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
     </body>
 
