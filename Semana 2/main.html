@@ -18,8 +18,6 @@
     </head>
     <body>
         <div>
-
-        
        <center>
         <h1 id="titulo1"> ingrese la informaciòn</h1>
         <p> <b style="color: coral;font-weight: 700;">instrucciones de uso: </b> por favor ingrese sus datos y de click en el boton de enviar</p>
@@ -88,5 +86,41 @@
 
     </div>
     </body>
-
 </html>
+
+
+<script>
+     console.log("Hola mundo")
+     console.warn("Hola mundo");
+    console.error("Hola mundo")
+    console.info("Hola mundo");
+
+    /*
+    1) forma clasica / comun
+    2) funciones anonimas o funciones flecha  (arrow function)
+    */
+   // JS no maneja tipado de datos a nivel sintactico
+
+   const titulo = "Este valor no va a cambiar";
+   let  nombre = "Juan";
+   var nombre2 = "Pedro";
+   nombre= false
+   nombre = 5 
+   console.log(nombre);
+  //  titulo = "este es un nuevo valor";
+
+  function sumarNumeros(param1,param2){
+    return param1 + param2;
+  }
+
+  let resp = sumarNumeros(4,2)
+  let resp2 = sumarNumeros("Hola mundo",2)
+  let resp3 = sumarNumeros(true,false)
+  let resp4 = sumarNumeros(true,[])
+
+  console.log(resp);
+  console.log(resp2);
+  console.log("el resultado de la operacion extrana es",resp3);
+  console.log("resp4",resp4);
+
+</script>
