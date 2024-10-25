@@ -22,12 +22,12 @@
         <h1 id="titulo1"> ingrese la informaciòn</h1>
         <p> <b style="color: coral;font-weight: 700;">instrucciones de uso: </b> por favor ingrese sus datos y de click en el boton de enviar</p>
         <form >
-            <input type="text" placeholder="nombre" value="Hola" class="form-control form-control-lg">
-            <input type="password" placeholder="PASSWORD" class="form-control">
-            <input type="email" placeholder="correo electronico" class="form-control">
-            <input type="number" placeholder="edad" class="form-control">
-            <input type="date" placeholder="fecha de nacimiento" class="form-control">
-            <input type="submit" value="enviar" class= "btn btn-danger">
+            <input id="txtNombre" type="text" placeholder="nombre" value="Hola" class="form-control form-control-lg">
+            <input id="txtPass" type="password" placeholder="PASSWORD" class="form-control">
+            <input id="txtCorreo" type="email" placeholder="correo electronico" class="form-control">
+            <input id="txtNumero" type="number" placeholder="edad" class="form-control">
+            <input id="txtFecha" type="date" placeholder="fecha de nacimiento" class="form-control">
+            <input id="btnEnviar" type="submit" value="enviar" class= "btn btn-danger">
         </form> 
         <img src="https://e7.pngegg.com/pngimages/195/190/png-clipart-black-cat-black-cat-halloween-horror-elements.png" alt="Gatito" width="150" height="150" />
         <button>enviar</button>
@@ -41,7 +41,7 @@
         <option value="3">Three</option>
       </select>
       <button type="accordion-button" class="btn btn-outline-primary">"accordion-button</button>
-      <button type="button" class="btn btn-warning">btn</button>
+      <button type="button" id="btnLimpiar" class="btn btn-warning">Limpiar</button>
       
       <div class="accordion" id="accordionExample">
         <div class="accordion-item">
@@ -90,10 +90,18 @@
 
 
 <script>
-     console.log("Hola mundo")
-     console.warn("Hola mundo");
-    console.error("Hola mundo")
-    console.info("Hola mundo");
+
+    let limpiar = document.getElementById("btnLimpiar");
+    
+    limpiar.addEventListener("click",()=>{
+        console.log("limpiando los elementos");
+        document.getElementById("txtNombre").value = "";
+        document.getElementById("txtPass").value = "";
+        document.getElementById("txtCorreo").value = "";
+        document.getElementById("txtNumero").value = "";
+        document.getElementById("txtFecha").value = "";
+        document.getElementById("btnEnviar").value = "Regresar";
+    });
 
     /*
     1) forma clasica / comun
@@ -101,26 +109,91 @@
     */
    // JS no maneja tipado de datos a nivel sintactico
 
-   const titulo = "Este valor no va a cambiar";
-   let  nombre = "Juan";
-   var nombre2 = "Pedro";
-   nombre= false
-   nombre = 5 
-   console.log(nombre);
-  //  titulo = "este es un nuevo valor";
+   function saludar(param,param1){
+    console.log("Hola",param);
+   }
 
-  function sumarNumeros(param1,param2){
-    return param1 + param2;
+   const saludar2 = (param,param1) => {
+    console.log("Hola",param);
+   }
+
+   var saludar3 = (param,param1) =>{
+    console.log("Hola",param);
+   }
+
+   let saludar4 = (param,param1) =>{
+    console.log("Hola",param);
+   }
+
+saludar(1,2)
+saludar2(1,2)
+saludar3(1,2)
+saludar4(1,2)
+
+saludar3 = ()=> {
+  console.log("nueva funcion");
+}
+
+saludar4 = ()=>{
+ /*
+  = asignacion
+  == comparación
+  === comparación estricta
+ */
+console.log("Doble comparacion")
+  if ("1" == 1){
+    console.log("son iguales");
+  }else{
+    console.log("no son iguales");
   }
 
-  let resp = sumarNumeros(4,2)
-  let resp2 = sumarNumeros("Hola mundo",2)
-  let resp3 = sumarNumeros(true,false)
-  let resp4 = sumarNumeros(true,[])
+  console.log("Triple comparacion")
+  if ("1" === 1) {
+    console.log("son iguales");
+  } else {
+    console.log("no son iguales");
+  }
 
-  console.log(resp);
-  console.log(resp2);
-  console.log("el resultado de la operacion extrana es",resp3);
-  console.log("resp4",resp4);
+let x ="hola mundo"
+  if (x) {
+    console.log("X no esta vacio");
+  }else{
+    console.log("X esta vacio");
+  }
+
+  let lista =[1,2,3]
+  if ([]) {
+    console.log("lista no esta vacio");
+  }else{
+    console.log("lista esta vacio");
+  }
+}
+saludar3();
+saludar4();
+
+  //  const titulo = "Este valor no va a cambiar";
+  //  let  nombre = "Juan";
+  //  var nombre2 = "Pedro"
+   
+  //  nombre= false
+  //  nombre = 5 
+  //  console.log(nombre);
+  // //  titulo = "este es un nuevo valor";
+
+  // function sumarNumeros(param1,param2){
+  //   return param1 + param2;
+  // }
+
+
+  // let resp = sumarNumeros(4,2)
+  // let resp2 = sumarNumeros("Hola mundo",2)
+  // let resp3 = sumarNumeros(true,false)
+  // let resp4 = sumarNumeros(true,[])
+  // let resp5 = sumarNumeros(true,true)
+  // console.log("num+num=",resp);
+  // console.log("string+num=",resp2);
+  // console.log("bool+bool=",resp3);
+  // console.log("bool+arr=",resp4);
+  // console.log("bool+bool(true)=",resp5);
 
 </script>
