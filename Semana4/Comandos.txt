@@ -1,0 +1,13 @@
+npx next build //build proyecto 
+npm start // correr el build
+
+npm run dev // correr el proyecto en hot reload
+
+npm install //instalar node modules
+documentacion vieja: 
+https://legacy.reactjs.org/docs/create-a-new-react-app.html
+
+documentacion nueva: 
+https://react.dev/learn/start-a-new-react-project
+
+
