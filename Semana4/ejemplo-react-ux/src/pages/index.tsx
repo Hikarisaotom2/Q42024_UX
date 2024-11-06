@@ -24,7 +24,9 @@ export default function Home() {
   {/* <h1>{"Texto estatico"}</h1> */}
 
   < CustomText titulo="Hola mundo!" descripcion="juan perez"/>
+  <br/><br/>
   < CustomText titulo="Viajando por japon" descripcion="perez juan"/>
+  <br/><br/>
   < CustomText titulo="Visitando TGU" descripcion="Claudia cortes"/>
     </>
   )
