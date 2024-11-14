@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 //Crear instancia de express 
 const app = express();
@@ -49,4 +50,40 @@ app.get('/saludar',(req,res)=>{
    });
 });
 
+app.post('/saludar',(req,res)=>{
+    console.log('Se recibio una solicitid de POST');
+    /*
+    insert en BDD
+    */
+    res.status(500).send(
+        "hola Mundo"
+    );
+    }
+);
+
+app.put('/actualizarDatos',(req,res)=>{
+ console.log("Se recibio una solicitud de actualizar datos");
+
+ res.status(203).send({
+    mensaje: "Su solicitud fue procesada correctamente",
+ });
+
+});
+
+app.delete('/eliminarDatos',(req,res)=>{
+    console.log("Se recibio una solicitud de eliminar datos");
+    res.status(203).send({
+        mensaje: "Su solicitud fue procesada correctamente",
+    });
+});
+
+app.get('/getHome', (req,res)=>{
+ let archivo = path.join(__dirname,'home.html')
+ console.log(archivo);
+ res.status(200).sendFile(archivo);
+ /*
+    __dirname, no fue definida por nosostros
+ */
+}
+);
 
