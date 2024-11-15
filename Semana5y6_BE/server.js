@@ -1,9 +1,12 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
+
+let parser = bodyParser.urlencoded({extended: true});
 
 //Crear instancia de express 
 const app = express();
-
+app.use(parser);
 // definir el puerto en el que queremos que se ejecute. 
 const port = 3000;
 
@@ -32,6 +35,23 @@ app.listen(port, ()=>{
     - Payload: es la informacion que se envia al servidor.
     - Endpoint: es la combinacion de la ruta y el metodo HTTP.
 */
+
+app.post('/getInfoSeccion/:identidad/:nombre/:correo',(req,res)=>{
+    console.log("la identidad es: ", req.params.identidad);
+    res.status(200).send({
+        mensaje: "usando params!"
+    });
+})
+
+app.post('/crearUsuario',(req,res)=>{
+    console.log("Nombre: ", req.body.nombre);
+    console.log("Apellido: ", req.body.apellido);
+    console.log("Contrasena: ", req.body.contrasena);
+    console.log("Correo: ", req.body.correo);
+    res.status(200).send({
+        mensaje: "Datos recibidos!"
+    });
+})
 
 app.get('/saludar',(req,res)=>{
     console.log('Se recibio una solicitid de saludar');
