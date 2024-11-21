@@ -8,7 +8,7 @@ let parser = bodyParser.urlencoded({extended: true});
 const app = express();
 app.use(parser);
 // definir el puerto en el que queremos que se ejecute. 
-const port = 3000;
+const port = 3001;
 
 //Iniciar el servidor. 
 // 1er parametro: puerto en el que queremos que se ejecute.
@@ -55,7 +55,7 @@ app.post('/crearUsuario',(req,res)=>{
 
 app.get('/saludar',(req,res)=>{
     console.log('Se recibio una solicitid de saludar');
-    console.log("Payload: ", req);
+    // console.log("Payload: ", req);
     /*
     accediendo a la bdd
     modificando registros 

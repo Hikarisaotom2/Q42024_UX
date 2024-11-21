@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import CustomH1 from "./customH1";
 import { text } from "node:stream/consumers";
+import axios from "axios";
 
 interface CustomTextProps {
     titulo: string;
@@ -17,22 +18,31 @@ const CustomText =({titulo,descripcion}:CustomTextProps) =>{
     3) ejecutarse solo cuando una variable cambie
     */
 //    1) primera forma: cada render
-    useEffect(()=>{
-        console.log("se ejecuto un cambio");
-    });
+    // useEffect(()=>{
+    //     console.log("se ejecuto un cambio");
+    // });
 // 2) segunda forma: solo una vez
     //useEffect(arrow,dependencias);
     useEffect(
         ()=>{
-            console.log("se ejecuto el render incicial");
+            
         },[]
     );
+
+
+    const test = () =>{
+        let url = 'http://localhost:3001/saludar';
+        console.log("se ejecuto el render incicial");
+        let resp = axios.get(url);
+        console.log("Mi primera promise!");
+        console.log(resp);
+    }
  // 3) tercera forma: solo cuando una variable cambie
-    useEffect(
-        ()=>{
-            console.log("Se ejecuto un cambio en el state textoIngresado");
-        },[textoIngresado]
-    );
+    // useEffect(
+    //     ()=>{
+    //         console.log("Se ejecuto un cambio en el state textoIngresado");
+    //     },[textoIngresado]
+    // );
     const condicional= ()=>{
             if(textoIngresado.length>5){
 
