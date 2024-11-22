@@ -48,7 +48,7 @@ app.post('/crearUsuario',(req,res)=>{
     console.log("Apellido: ", req.body.apellido);
     console.log("Contrasena: ", req.body.contrasena);
     console.log("Correo: ", req.body.correo);
-    res.status(200).send({
+    res.status(400).send({
         mensaje: "Datos recibidos!"
     });
 })
