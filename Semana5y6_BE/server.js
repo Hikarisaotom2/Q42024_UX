@@ -1,21 +1,40 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const { strict } = require('assert');
+
 
 let parser = bodyParser.urlencoded({extended: true});
-
 //Crear instancia de express 
 const app = express();
 app.use(parser);
 // definir el puerto en el que queremos que se ejecute. 
 const port = 3001;
+let uri = "mongodb+srv://usuario:Password123@ux2024.m1ih6.mongodb.net/?retryWrites=true&w=majority&appName=ux2024"
 
+const client = new MongoClient(uri, {
+    serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true
+    }
+});
 //Iniciar el servidor. 
 // 1er parametro: puerto en el que queremos que se ejecute.
 // 2do parametro: callback que se ejecutará cuando el servidor se inicie. 
 
+async function connect(){
+ try{
+    await client.connect();
+    console.log("Conectado a la base de datos");
+ }catch(error){
+    console.error("Error al conectar a la base de datos: ", error);
+ }
+}
+
 app.listen(port, ()=>{
     console.log(`Servidor corriendo en http://localhost:${port}`);
+    connect();
 })
 
 
@@ -106,4 +125,35 @@ app.get('/getHome', (req,res)=>{
  */
 }
 );
+
+
+/*Endpoints de mongo*/
+
+app.post('/crearUsuarioMongo', async (req,res)=>{ 
+    try{
+    
+        const client = new MongoClient(uri);
+        // conectarse a la DB 
+        const baseDeDatos = client.db("claseux");
+        // seleccionar la coleccion con la que queremos trabajar
+        const coleccion = baseDeDatos.collection("alumnosUX");
+        // crear un nuevo registro
+        const response = await coleccion.insertOne(
+            {
+                nombre: req.body.nombre,
+                apellido: req.body.apellido,
+                correo: req.body.correo,
+                contrasena: req.body.contrasena,
+                ...req.body
+            });
+        res.status(200).send({
+            resultado: response,
+        });
+
+    }catch(error){
+        res.status(401).send({
+        error: error,
+        });
+    }
+});
 
