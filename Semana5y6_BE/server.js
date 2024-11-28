@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const { strict } = require('assert');
 
 
@@ -131,7 +131,7 @@ app.get('/getHome', (req,res)=>{
 
 app.post('/crearUsuarioMongo', async (req,res)=>{ 
     try{
-    
+
         const client = new MongoClient(uri);
         // conectarse a la DB 
         const baseDeDatos = client.db("claseux");
@@ -155,5 +155,93 @@ app.post('/crearUsuarioMongo', async (req,res)=>{
         error: error,
         });
     }
+});
+
+//update 
+app.put('/actualizarUsuarioMongo', async (req,res)=>
+    {
+    try{
+        const client = new MongoClient(uri);
+        const baseDeDatos = client.db("claseux");
+        const coleccion = baseDeDatos.collection("alumnosUX");
+        // update el document 
+        const response = await coleccion.updateOne(
+            {
+                // where correo = req.body.correo
+                //filtros  
+                correo: req.body.correo,
+            },
+            {
+                $set: {
+                    // definir que campos queremos actualizar
+                    grupoTrabajo: req.body.grupoTrabajo,
+                    nuevoCampo: "este campo no existia antes"
+                }
+            }
+        );
+
+        res.status(200).send({
+            resultado: response,
+            mensaje:'Se actualizo el documento',
+        });
+    }catch(error){
+        res.status(401).send({
+            error: error,
+        });
+    }
+});
+
+//delete 
+app.delete('/eliminarUsuarioMongo', async (req,res)=>{
+    try{
+        const client = new MongoClient(uri);
+        const baseDeDatos = client.db("claseux");
+        const coleccion = baseDeDatos.collection("alumnosUX");
+
+        const response = await coleccion.deleteOne(
+            {
+                _id: new ObjectId(req.body._id),
+            }
+        );
+        if(response.deletedCount === 0){
+            res.status(300).send({
+                mensaje: "No se encontro ningun documento con ese ID",
+            });
+        }else{
+            res.status(200).send({
+                resultado: response,
+                mensaje: "Se elimino el documento",
+            });
+        }
+
+       
+
+    }catch(error){
+        console.log(error);
+        res.status(401).send({
+            error: error,
+        });
+    }
+
+});
+//get  
+
+app.get('/obtenerUsuario',async (req,res)=>{    
+        const client = new MongoClient(uri);
+        const baseDeDatos = client.db("claseux");
+        const coleccion = baseDeDatos.collection("alumnosUX");
+        try{
+            // obtener todos los documentos de la coleccion     
+                                            // select from * 
+        const response = await coleccion.find({}).toArray();
+        
+        res.status(200).send({
+            resultado: response,
+        });
+        }catch(error){
+            res.status(401).send({
+                error: error,
+            });
+        }
 });
 
