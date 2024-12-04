@@ -3,6 +3,10 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const { strict } = require('assert');
+const {initializeApp} = require('firebase/app');
+const { getAuth, createUserWithEmailAndPassword } = require ("firebase/auth");
+
+
 
 
 let parser = bodyParser.urlencoded({extended: true});
@@ -12,13 +16,35 @@ app.use(parser);
 // definir el puerto en el que queremos que se ejecute. 
 const port = 3001;
 let uri = "mongodb+srv://usuario:Password123@ux2024.m1ih6.mongodb.net/?retryWrites=true&w=majority&appName=ux2024"
-
 const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
         strict: true
     }
 });
+
+// const firebaseConfig = {
+//     apiKey: "AIzaSyCMJaO2Msj9LN3qySpXSFF9ck8tvZmhxX8",
+//     authDomain: "ux2024-q4.firebaseapp.com",
+//     projectId: "ux2024-q4",
+//     storageBucket: "ux2024-q4.firebasestorage.app",
+//     messagingSenderId: "335262097779",
+//     appId: "1:335262097779:web:73549534baac82e0196506",
+//     measurementId: "G-MWVKP7WV42"
+//   };
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBaejQ2O8MRgMtsQFFVqkMwiTx7e2_KkXA",
+    authDomain: "ux2024-6cba2.firebaseapp.com",
+    projectId: "ux2024-6cba2",
+    storageBucket: "ux2024-6cba2.appspot.com",
+    messagingSenderId: "342081729560",
+    appId: "1:342081729560:web:c891f7902249a31dd0bf6d",
+    measurementId: "G-5NG5C4NQFH"
+  };
+
+const firebase = initializeApp(firebaseConfig);
+
 //Iniciar el servidor. 
 // 1er parametro: puerto en el que queremos que se ejecute.
 // 2do parametro: callback que se ejecutará cuando el servidor se inicie. 
@@ -245,3 +271,24 @@ app.get('/obtenerUsuario',async (req,res)=>{
         }
 });
 
+
+// Firebase 
+
+
+app.post('/crearUsuarioFirebase', async (req,res)=>{
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, req.body.correo, req.body.contrasena)
+    .then((response) => {
+        // Signed in
+        res.status(200).send({
+            resultado: response,
+        });
+    })
+    .catch((error) => {
+        res.status(401).send({
+            error: error,
+        });
+    });
+    
+
+});
