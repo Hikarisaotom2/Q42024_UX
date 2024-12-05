@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const { strict } = require('assert');
 const {initializeApp} = require('firebase/app');
-const { getAuth, createUserWithEmailAndPassword } = require ("firebase/auth");
+const { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } = require ("firebase/auth");
 
 
 
@@ -289,6 +289,35 @@ app.post('/crearUsuarioFirebase', async (req,res)=>{
             error: error,
         });
     });
-    
+});
+
+app.post('/loginFirebase', async (req,res)=>{
+    console.log("Correo: ", req.body.correo);
+    const auth = getAuth(firebase);
+    signInWithEmailAndPassword(auth,req.body.correo, req.body.contrasena).
+    then((response)=>{
+        res.status(200).send({
+            resultado: response,
+        });
+    }).catch((error)=>{
+        res.status(401).send({
+            error: error,
+        });
+    });
+
+});
+
+app.post('/logoutFirebase', async (req,res)=>{
+    const auth = getAuth(firebase);
+    signOut(auth).then((response)=>{
+        res.status(200).send({
+            mensaje: "Sesion cerrada",
+            resultado: response,
+        });
+    }).catch((error)=>{
+        res.status(401).send({
+            error: error,
+        });
+    })
 
 });
